@@ -40,8 +40,6 @@ function addTask() {
 function removeTask() {
    
     // let input = prompt("Insert the position/ number of the task to be removed: ");
-
-
     TASKS.pop();
     console.log(TASKS);
     openMenu();
@@ -49,22 +47,33 @@ function removeTask() {
     
 }
 
-function markDone() {
-    // console.log("this is a function called markDone");
+function exitTaskManager() {
+    let input = prompt("Are you sure that you want quit this manager? Y/N ");
+    if(input == "Y" ) {
+        console.log("You have left the task manager.");
+        return
+    } else {
+        openMenu();
+    }
+    
+}
 
-    // let input = prompt("Insert a number of the Task: ");
+function markDone() {
+    
     console.log(TASKS);
     let input = parseInt(prompt("Whitch task do you want to mark as done?/ Remove it from <done> "));
-
-    if (TASKS[input].includes(" :done")) {
-        TASKS[input] = TASKS[input].replace(" :done", "");
-      
-    } else if (input >= 1 && input <= TASKS.length) {
-        TASKS[input - 1] += " :done";
-    }
-        
-
+    let muggle = input -1;
    
+    
+    if (TASKS[ muggle ].includes(" :done")) {
+        TASKS[ muggle ] = TASKS[ muggle ].replace(" :done", "");
+
+    } else if (input >= 1 && input <= TASKS.length) {
+        TASKS[ muggle ] += " :done";
+
+    } else {
+        console.log("Insert a number from 1 to 5!")
+    }   
     console.log(TASKS);
     openMenu();
 }
@@ -86,10 +95,9 @@ function openMenu() {
         removeTask();
     }   else if(choiceNb === 4 ) {
         markDone();
-    }   
-
-    
-    // console.log(choiceNb)
+    }   else if(choiceNb === 5 ) {
+        exitTaskManager();
+    }
 }
 
 
